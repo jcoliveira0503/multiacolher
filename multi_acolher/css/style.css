@@ -1,0 +1,548 @@
+/* =====================================================
+   VARIÁVEIS GLOBAIS
+   ===================================================== */
+:root{
+  --brown-950:#2e201b;
+  --brown-900:#4a3027;
+  --brown-800:#5d3e31;
+  --brown-700:#7a5647;
+  --brown-600:#8d6559;
+  --brown-500:#b1846b;
+  --brown-200:#d9c0ad;
+  --brown-100:#f0e2d8;
+  --cream:#f6f1ec;
+  --white:#fffdfb;
+  --text:#2f221d;
+  --muted:#69544d;
+  --shadow:0 16px 38px rgba(63,38,29,.12);
+  --radius:20px;
+
+  --sand:#e7d8cc;
+  --beige:#f2e7df;
+  --panel:#eadbc9;
+  --gold:#b78d6a;
+  --taupe:#654d42;
+}
+
+/* =====================================================
+   RESET / BASE
+   ===================================================== */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.65}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:min(1120px,calc(100% - 40px));margin:auto}
+
+/* =====================================================
+   CABEÇALHO / NAVEGAÇÃO
+   ===================================================== */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(251,248,245,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--sand)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+
+/* .logo é usado tanto como logotipo em texto (com .logo span) quanto,
+   em outras páginas, como contêiner de imagem (.logo img) — as duas
+   variantes convivem na mesma classe sem conflito, então ficam juntas. */
+.logo{
+  font-family:Georgia,serif;
+  font-size:1.35rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  color:var(--brown-900);
+  display:flex;
+  align-items:center;
+}
+.logo span{display:block;font-family:Inter,Arial,sans-serif;font-size:.64rem;font-weight:600;letter-spacing:.18em;color:var(--brown-600);margin-top:-3px}
+.logo img{width:150px;height:auto;max-width:150px;display:block}
+
+/* Mesmo padrão de logo em imagem, usado em outra parte do layout (ex.: header de outra página). */
+.brand{display:flex;align-items:center}
+.brand img{width:150px;height:auto;max-width:150px;display:block}
+
+.nav-links{display:flex;align-items:center;gap:25px;font-size:.92rem;font-weight:600;color:var(--brown-800)}
+.nav-links a:hover{color:var(--brown-500)}
+.menu-btn{display:none;border:0;background:transparent;font-size:1.7rem;color:var(--brown-900)}
+
+.nav-links .btn-primary,
+.header-cta,
+.nav .btn-primary{
+  background:linear-gradient(135deg,#5b3b2e 0%,#7a5748 50%,#8d6a5d 100%);
+  color:#f8f4f1;
+  border:1px solid rgba(255,255,255,.26);
+  box-shadow:0 8px 18px rgba(88,59,48,.12);
+}
+
+.nav-links .btn-primary:hover,
+.header-cta:hover,
+.nav .btn-primary:hover{
+  background:linear-gradient(135deg,#53392f 0%,#704f43 50%,#7d6155 100%);
+  transform:translateY(-1px);
+}
+/* =====================================================
+   BOTÕES
+   ===================================================== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 22px;font-weight:800;cursor:pointer;transition:.2s}
+.btn-primary{background:linear-gradient(135deg,#5b3b2e 0%,#7a5748 50%,#8d6a5d 100%);color:#f8f4f1;border:1px solid rgba(255,255,255,.26)}
+.btn-primary:hover{background:linear-gradient(135deg,#53392f 0%,#704f43 50%,#7d6155 100%);transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--brown-700);color:var(--brown-800);background:rgba(255,255,255,.32)}
+.btn-outline:hover{background:var(--brown-100)}
+
+.hero .btn-primary{background:#f4eee9;color:var(--brown-900);border:1px solid rgba(89,55,46,.35)}
+.hero .btn-primary:hover{background:var(--white)}
+.hero .btn-outline{border:1px solid rgba(255,255,255,.7);color:#fffaf7;background:rgba(255,255,255,.08)}
+.hero .btn-outline:hover{background:rgba(255,255,255,.14)}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.hero{padding:82px 0 72px;background:linear-gradient(135deg,#5b3b2e 0%,#7a5748 50%,#8d6a5d 100%)}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:900;color:#d7c0b1}
+h1,h2,h3{font-family:Georgia,serif;color:var(--brown-950);line-height:1.15;margin:0 0 18px}
+h1{font-size:clamp(2.6rem,6vw,4.8rem);letter-spacing:-.03em}
+h2{font-size:clamp(2rem,4vw,3rem)}
+h3{font-size:1.45rem}
+.lead{font-size:1.12rem;color:var(--muted);max-width:650px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+.hero h1,
+.hero h2,
+.hero h3,
+.hero .lead,
+.hero .eyebrow{color:#f8f4f1}
+.hero .lead{color:rgba(255,249,246,.9)}
+
+.hero-card{min-height:410px;border-radius:32px;background:linear-gradient(135deg,#f3e9e1 0%,#eadfd8 100%);box-shadow:var(--shadow);display:flex;align-items:flex-end;padding:30px;color:var(--white);position:relative;overflow:hidden;border:1px solid rgba(110,77,65,.12);transform:translateY(4px)}
+.hero-card:before,.hero-card:after{content:"";position:absolute;border:1px solid rgba(110,77,65,.12);border-radius:50%}
+.hero-card:before{width:360px;height:360px;right:-150px;top:-100px}
+.hero-card:after{width:240px;height:240px;left:-120px;bottom:-110px}
+.hero-card-content{position:relative;z-index:1}
+.hero-card blockquote{font:700 1.7rem/1.25 Georgia,serif;margin:0 0 12px}
+
+.logo-hero-container{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.logo-hero{width:min(80%,360px);height:auto;display:block;filter:brightness(1.08);margin-top:8px}
+
+/* =====================================================
+   SEÇÕES GERAIS / CARDS
+   ===================================================== */
+.section{padding:78px 0}
+.section.alt{background:var(--beige)}
+.section-head{max-width:760px;margin-bottom:36px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);padding:28px;box-shadow:0 8px 24px rgba(43,27,20,.05)}
+.number{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--brown-100);color:var(--brown-800);font-weight:900;margin-bottom:20px}
+
+/* =====================================================
+   BUSCA
+   ===================================================== */
+.search-box{background:var(--white);border:1px solid #e5d8cf;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.filters{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+label{display:block;font-weight:800;font-size:.84rem;margin-bottom:7px;color:var(--brown-900)}
+select,input{width:100%;padding:13px 14px;border:1px solid #d8c9bf;border-radius:12px;background:var(--white);font:inherit;color:var(--text)}
+.search-results{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:26px}
+
+/* =====================================================
+   CARD DE PSICÓLOGO (LISTAGEM)
+   ===================================================== */
+.psych-card{display:grid;grid-template-columns:92px 1fr;gap:18px;background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);padding:22px}
+.avatar{width:92px;height:92px;border-radius:50%;background:var(--brown-200);display:grid;place-items:center;color:var(--brown-900);font:700 1.8rem Georgia,serif}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px}
+.tag{font-size:.76rem;padding:5px 9px;border-radius:999px;background:var(--brown-100);color:var(--brown-800);font-weight:700}
+.specialty-toggle{display:none}
+
+/* foto real dentro do card (substitui as iniciais do .avatar por uma <img>) */
+.psych-card .avatar{overflow:hidden;flex-shrink:0}
+.psych-card .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* botões do card: mesmas cores do .btn-primary/.btn-outline globais,
+   só ajustando tamanho; a borda extra do primary é a única diferença real */
+.psych-card .btn{padding:10px 16px;font-size:.82rem;border-radius:10px;font-weight:700}
+.psych-card .btn-primary{border:1px solid var(--brown-800)}
+
+/* =====================================================
+   CTA
+   ===================================================== */
+.cta{background:linear-gradient(135deg,#563d31,#7a5949);color:var(--white);border-radius:28px;padding:48px}
+.cta h2{color:var(--white)}
+.cta p{color:rgba(255,249,246,.82)}
+
+.page-hero{padding:65px 0;background:var(--brown-100)}
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
+.footer{
+  background:linear-gradient(135deg,#5b3b2e 0%,#7a5748 50%,#8d6a5d 100%);
+  color:var(--white);
+  padding:65px 0 0;
+  margin-top:40px;
+}
+
+/* Observação: .footer h3 / .footer a abaixo continuam aqui como uma
+   camada de "fallback" — se algum título/link estiver dentro de
+   .footer mas fora de .footer-column, é este bloco que garante a cor
+   correta. Onde as duas regras coincidem, as classes .footer-column /
+   .footer-contact (mais abaixo) têm prioridade por virem depois. */
+.footer h3{color:var(--white);font-size:1.15rem}
+.footer a{color:var(--sand)}
+.footer a:hover{color:var(--white)}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.25fr 1.35fr .8fr 1fr;
+  gap:55px;
+  padding-bottom:55px;
+}
+
+.footer-brand{display:flex;flex-direction:column;align-items:flex-start;gap:25px}
+.footer-logo{display:inline-flex;align-items:center;padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,#f6efe9 0%,#efe2d9 100%);box-shadow:inset 0 0 0 1px rgba(110,77,65,.08)}
+.footer-logo img{width:170px;height:auto;display:block}
+
+.footer-instagram{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;transition:transform .2s ease}
+.footer-instagram img{width:27px;height:27px;object-fit:contain;display:block}
+.footer-instagram:hover{transform:translateY(-2px) scale(1.05)}
+
+.footer-column h3{margin:0 0 22px;font-size:.95rem;font-weight:700;color:var(--white)}
+.footer-column ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.footer-column li{margin:0}
+.footer-column a{color:rgba(255,255,255,.68);text-decoration:none;font-size:.9rem;line-height:1.5;transition:color .2s ease}
+.footer-column a:hover{color:var(--white)}
+
+.footer-contact ul{gap:18px}
+.footer-contact li{display:flex;flex-direction:column;gap:3px}
+.footer-contact li span{font-size:.76rem;color:rgba(255,255,255,.45)}
+.footer-contact li a{color:rgba(255,255,255,.75)}
+.footer-contact li p{margin:0;color:rgba(255,255,255,.68);font-size:.9rem;line-height:1.5}
+
+.footer-bottom{
+  padding:20px 0;
+  border-top:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  margin-top:30px;
+}
+.footer-bottom p{margin:0;color:rgba(255,255,255,.45);font-size:.78rem}
+
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1.2fr 1fr 1fr;gap:40px 30px}
+  .footer-brand{grid-column:1 / -1}
+}
+
+@media(max-width:600px){
+  .footer{padding-top:50px}
+  .footer-grid{grid-template-columns:1fr;gap:35px}
+  .footer-brand{grid-column:auto}
+  .footer-logo img{width:175px}
+  .footer-column h3{margin-bottom:16px}
+  .footer-column ul{gap:10px}
+  .footer-bottom{margin-top:10px}
+}
+
+/* =====================================================
+   AVISOS / ESTADOS
+   ===================================================== */
+.notice{background:#fff7ef;border:1px solid #ead0bc;border-radius:16px;padding:18px;color:var(--brown-800)}
+.empty{padding:50px;text-align:center;background:var(--white);border:1px dashed #d8c9bf;border-radius:20px;color:var(--muted)}
+
+/* =====================================================
+   RESPONSIVO — LAYOUT BASE
+   ===================================================== */
+@media(max-width:850px){
+  .nav-links{display:none;position:absolute;left:20px;right:20px;top:72px;background:var(--white);border:1px solid var(--sand);border-radius:16px;padding:15px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch}
+  .nav-links.open{display:flex}
+  .nav-links .btn{width:100%}
+  .menu-btn{display:block}
+  .hero-grid,.profile{grid-template-columns:1fr}
+  .hero{padding-top:55px}
+  .hero-card{min-height:300px}
+  .cards,.search-results{grid-template-columns:1fr}
+  .filters{grid-template-columns:1fr}
+  .profile-side{position:static}
+}
+@media(max-width:500px){
+  .container{width:min(1120px,calc(100% - 28px))}
+  .nav{height:70px}
+  .logo{font-size:1.1rem}
+  .logo img{width:125px;max-width:125px}
+  .hero{padding:48px 0}
+   .hero-grid{gap:34px}
+   .hero-card{min-height:260px;padding:22px}
+  .section{padding:58px 0}
+  h1{font-size:2.55rem}
+  .psych-card{grid-template-columns:70px 1fr}
+  .avatar{width:70px;height:70px;font-size:1.4rem}
+  .psych-card{grid-template-columns:72px 1fr;gap:15px}
+  .psych-card .avatar{width:72px;height:72px}
+  .psych-card .btn{padding:9px 13px;font-size:.78rem}
+}
+
+@media(max-width:600px){
+   .psych-card .tags .tag:nth-child(n+5){display:none}
+   .psych-card .tags.is-expanded .tag:nth-child(n+5){display:inline-flex}
+   .specialty-toggle{
+      display:inline-flex;
+      align-items:center;
+      padding:0;
+      margin:-4px 0 14px;
+      border:0;
+      background:transparent;
+      color:var(--brown-700);
+      font:700 .78rem Inter,Arial,sans-serif;
+      cursor:pointer;
+   }
+   .specialty-toggle:hover{color:var(--brown-900)}
+}
+
+@media(max-width:380px){
+   h1{font-size:2.3rem}
+   .hero{padding:42px 0}
+   .actions{margin-top:22px}
+}
+
+/* =====================================================
+   NOVO PERFIL DA PSICÓLOGA
+   ===================================================== */
+.profile-section{padding:45px 0 80px}
+.profile-section .back-link{display:inline-block;margin-bottom:28px;color:#5c3a26;font-size:15px}
+
+/* PERFIL */
+.professional-profile{width:100%;max-width:980px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center}
+
+/* FOTO */
+.profile-section .professional-photo{width:220px;height:260px}
+.profile-section .professional-photo img{width:220px;height:260px;max-width:220px;object-fit:cover;border-radius:18px}
+
+/* INFORMAÇÕES */
+.professional-info{min-width:0}
+.professional-label{display:block;color:var(--brown-500);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+.professional-info h1{font-family:Georgia,serif;font-size:34px;line-height:1.15;margin:0 0 5px;color:var(--brown-950)}
+.professional-crp{color:var(--muted);font-size:14px;margin:0 0 12px}
+
+/* AVALIAÇÃO */
+.professional-rating{display:flex;align-items:center;gap:2px;margin-bottom:20px}
+.professional-rating span{color:var(--gold);font-size:19px}
+.professional-rating a{margin-left:8px;color:var(--brown-700);font-size:14px}
+
+/* DETALHES */
+.professional-details{display:flex;flex-wrap:wrap;gap:25px;margin-bottom:25px}
+.professional-details div{display:flex;flex-direction:column}
+.professional-details strong{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.professional-details span{color:var(--text);font-size:15px}
+
+/* BOTÕES */
+.professional-actions{display:flex;flex-wrap:wrap;gap:10px}
+.professional-actions .btn-primary,
+.professional-actions .btn-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:700}
+/* .btn-primary aqui já herda cor/fundo do .btn-primary global — só o secondary é um visual novo */
+.professional-actions .btn-secondary{border:1px solid var(--brown-600);background:var(--white);color:var(--brown-800)}
+
+/* CONTEÚDO */
+.profile-section .profile-content{width:100%;max-width:980px;margin:55px auto 0;padding-top:32px;border-top:1px solid var(--sand)}
+.profile-section .profile-content h2{font-family:Georgia,serif;font-size:25px;color:var(--brown-950);margin:0 0 20px}
+
+/* ESPECIALIDADES */
+.specialty-tags{display:flex;flex-wrap:wrap;gap:8px}
+.specialty-tags span{background:var(--brown-100);color:var(--brown-700);padding:7px 13px;border-radius:999px;font-size:13px}
+
+/* BIO */
+.professional-bio{max-width:850px}
+.professional-bio p{color:var(--muted);font-size:15px;line-height:1.75;margin:0 0 15px}
+
+/* AVALIAÇÕES */
+.evaluations-header{display:flex;justify-content:space-between;align-items:center;gap:30px}
+.evaluations-header p{color:var(--muted);margin:0}
+.evaluation-score{text-align:center}
+.evaluation-score strong{display:block;color:var(--gold);font-size:32px}
+.evaluation-score span{color:var(--muted);font-size:12px}
+.evaluation-box{margin-top:25px;padding:28px;text-align:center;background:#f7f1ec;border-radius:18px}
+.evaluation-stars{color:var(--gold);font-size:25px;margin-bottom:8px}
+.evaluation-box h3{font-size:19px;margin-bottom:8px}
+.evaluation-box p{max-width:600px;margin:0 auto 20px;color:var(--muted)}
+
+/* CELULAR */
+@media(max-width:750px){
+  .professional-profile{grid-template-columns:1fr;gap:25px}
+  .profile-section .professional-photo{width:180px;height:215px}
+  .profile-section .professional-photo img{width:180px;height:215px;max-width:180px}
+  .professional-info h1{font-size:28px}
+  .evaluations-header{flex-direction:column;align-items:flex-start}
+}
+
+/* =====================================================
+   PÁGINA SOBRE O PROJETO
+   ===================================================== */
+.about-hero{padding-bottom:55px}
+.about-hero .lead{max-width:760px}
+
+/* ÁREA PRINCIPAL */
+.about-section{padding:55px 0 65px;background:#fbf8f6}
+.about-container{max-width:900px}
+
+/* BLOCOS */
+.about-block{padding:42px 0;border-bottom:1px solid rgba(75,47,34,.09)}
+.about-block:first-child{padding-top:0}
+.about-block:last-child{border-bottom:none;padding-bottom:0}
+.about-content{max-width:800px}
+
+/* TÍTULOS */
+.about-content h2{margin:0 0 22px;font-size:2rem;line-height:1.25;color:var(--brown-950)}
+
+/* TEXTOS */
+.about-text p,
+.psychologist-invite p{font-size:1.03rem;line-height:1.85;color:var(--taupe);margin:0 0 16px}
+.about-text p:last-child,
+.psychologist-invite p:last-child{margin-bottom:0}
+
+/* PROPÓSITO */
+.purpose-box{margin-bottom:24px;padding:25px 30px;background:#f7f1ed;border-left:3px solid var(--brown-700);border-radius:0 10px 10px 0}
+.purpose-box .quote{margin:0;font-size:1.1rem;line-height:1.7;color:var(--brown-900)}
+.quote{border-left:4px solid var(--brown-500);padding-left:18px;font:italic 1.2rem Georgia,serif;color:var(--brown-800)}
+
+/* CAIXA "PARA PSICÓLOGOS" */
+#psicologos .psychologist-invite{background:#f3ebe5;border:none;border-left:3px solid #6b4938;border-radius:0 12px 12px 0;padding:24px 28px;box-shadow:none}
+#psicologos .psychologist-invite p{color:var(--taupe);margin:0}
+
+/* =====================================================
+   CTA FINAL (SOBRE)
+   ===================================================== */
+.about-cta{padding:55px 0;background:var(--brown-800)}
+.about-cta-content{display:flex;align-items:center;justify-content:space-between;gap:35px;padding:0;background:transparent;border:none;box-shadow:none;border-radius:0}
+.about-cta-content h2{margin:0;max-width:650px;font-size:1.65rem;font-weight:500;line-height:1.4;color:var(--white)}
+.about-cta-content .btn{flex-shrink:0;background:var(--white);color:var(--brown-800);border:none;padding:13px 22px;border-radius:9px;font-weight:700}
+.about-cta-content .btn:hover{background:var(--beige)}
+
+/* CELULAR */
+@media(max-width:700px){
+  .about-cta{padding:42px 0}
+  .about-cta-content{flex-direction:column;align-items:flex-start;gap:22px}
+  .about-cta-content h2{font-size:1.4rem}
+}
+
+/* =====================================================
+   INSTAGRAM FLUTUANTE
+   ===================================================== */
+.floating-instagram{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#f9f0ea 0%,#efe1d7 100%);
+  border:1px solid rgba(91,59,46,.10);
+  border-radius:50%;
+  box-shadow:0 12px 28px rgba(41,29,24,.12);
+  z-index:9999;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  animation:instagramFloat 2.6s ease-in-out infinite;
+}
+.floating-instagram img{width:25px;height:25px;object-fit:contain}
+.floating-instagram:hover{
+  transform:translateY(-5px) scale(1.08);
+  box-shadow:0 18px 32px rgba(41,29,24,.16);
+  background:linear-gradient(135deg,#fffaf7 0%,#f4e9e1 100%);
+  animation-play-state:paused;
+}
+
+@keyframes instagramFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-6px) scale(1.04); }
+}
+
+@media(max-width:600px){
+  .floating-instagram{right:16px;bottom:16px;width:52px;height:52px}
+  .floating-instagram img{width:23px;height:23px}
+}
+
+/* =====================================================
+   COMO FUNCIONA
+   ===================================================== */
+.how-hero{padding-bottom:55px}
+.how-hero .lead{max-width:720px}
+
+/* PASSO A PASSO */
+.how-steps{background:var(--cream)}
+.how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.how-card{background:var(--white);border:1px solid var(--sand);border-radius:18px;padding:28px;transition:transform .2s ease,box-shadow .2s ease}
+.how-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(43,27,20,.07)}
+.how-card h3{font-size:1.35rem;margin-bottom:12px}
+.how-card p{margin:0;color:var(--muted);line-height:1.75}
+
+/* reaproveita exatamente o mesmo círculo numerado usado em .number */
+.how-number{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--brown-100);color:var(--brown-800);font-size:.78rem;font-weight:900;margin-bottom:20px}
+
+/* =====================================================
+   FAQ
+   ===================================================== */
+.faq-section{padding:75px 0 80px;background:var(--beige)}
+.faq-container{max-width:900px}
+.faq-list{border-top:1px solid rgba(75,47,34,.14)}
+.faq-item{border-bottom:1px solid rgba(75,47,34,.14)}
+.faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 4px;border:none;background:transparent;color:var(--brown-900);font:700 1rem Inter,Arial,sans-serif;text-align:left;cursor:pointer}
+.faq-question:hover{color:var(--brown-600)}
+.faq-icon{flex-shrink:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid var(--brown-500);border-radius:50%;color:var(--brown-700);font-size:1.2rem;font-weight:400;transition:transform .2s ease}
+.faq-item.active .faq-icon{transform:rotate(45deg)}
+.faq-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+.faq-answer p{overflow:hidden;margin:0;padding:0 45px 0 4px;color:var(--muted);line-height:1.8}
+.faq-item.active .faq-answer{grid-template-rows:1fr}
+.faq-item.active .faq-answer p{padding-bottom:22px}
+
+/* =====================================================
+   CTA (COMO FUNCIONA)
+   ===================================================== */
+.how-cta{padding:55px 0;background:var(--brown-800)}
+.how-cta-content{display:flex;align-items:center;justify-content:space-between;gap:35px}
+.how-cta-content h2{margin:0 0 8px;color:var(--white);font-size:1.7rem;font-weight:500}
+.how-cta-content p{margin:0;color:var(--sand)}
+.how-cta-content .btn{flex-shrink:0;background:var(--white);color:var(--brown-800);border:none}
+.how-cta-content .btn:hover{background:var(--beige)}
+
+/* RESPONSIVO */
+@media(max-width:700px){
+  .how-grid{grid-template-columns:1fr}
+  .faq-section{padding:55px 0 60px}
+  .faq-question{padding:20px 2px;font-size:.95rem}
+  .faq-answer p{padding-right:30px}
+  .how-cta-content{flex-direction:column;align-items:flex-start}
+  .how-cta-content h2{font-size:1.45rem}
+}
+
+/* =====================================================
+   AVISO DE EMERGÊNCIA
+   ===================================================== */
+.emergency-notice{padding:45px 0;background:var(--beige)}
+.emergency-container{max-width:900px;display:flex;align-items:flex-start;gap:20px;padding:25px 28px;background:var(--white);border-left:4px solid var(--brown-700);border-radius:0 14px 14px 0}
+.emergency-icon{width:38px;height:38px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--brown-700);color:var(--white);font-weight:900;font-size:1.15rem}
+.emergency-container h2{margin:0 0 10px;font-size:1.45rem}
+.emergency-container p{margin:0 0 12px;color:var(--muted);line-height:1.75}
+.emergency-numbers{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.emergency-numbers span{padding:7px 12px;border-radius:999px;background:var(--brown-100);color:var(--brown-800);font-size:.85rem}
+
+@media(max-width:600px){
+  .emergency-container{padding:22px;gap:14px}
+  .emergency-icon{width:34px;height:34px}
+}
+
+/* =====================================================
+   AVALIAÇÕES PUBLICADAS
+   ===================================================== */
+.review-marquee{overflow:hidden;position:relative;margin:18px 0 26px}
+.review-marquee::before,
+.review-marquee::after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:1;pointer-events:none}
+.review-marquee::before{left:0;background:linear-gradient(90deg,#f7f1ec 0%,rgba(247,241,236,0) 100%)}
+.review-marquee::after{right:0;background:linear-gradient(270deg,#f7f1ec 0%,rgba(247,241,236,0) 100%)}
+.review-track{display:flex;align-items:stretch;gap:16px;width:max-content;animation:reviewScroll 40s linear infinite}
+.review-track:hover{animation-play-state:paused}
+.review-item{flex:0 0 320px;max-width:320px;text-align:left;padding:18px 18px 16px;border:1px solid var(--sand);background:rgba(255,255,255,.42);border-radius:16px;box-shadow:0 6px 16px rgba(43,27,20,.04)}
+.review-item:first-child{border-top:1px solid var(--sand)}
+.review-stars{color:var(--gold);font-size:18px;margin-bottom:8px;letter-spacing:2px}
+.review-text{color:var(--muted);font-size:15px;line-height:1.7;margin:0 0 8px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.review-author{color:var(--brown-700);font-size:13px;font-weight:700}
+
+@keyframes reviewScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
